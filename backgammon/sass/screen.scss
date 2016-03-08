@@ -1,0 +1,96 @@
+//Compass modules
+@import "compass/reset";
+@import "compass/css3";
+
+@import "mixins";
+@import "skin";
+
+* {
+	@include box-sizing(border-box);
+}
+
+html {
+	@include fullScreen(); 
+	body {
+		background-color: $background;
+		min-height: 100vh;
+		@include display-flex;
+  		@include align-items(center);
+		@include justify-content(center);
+		#board {
+			width: 96vmin;
+			height: 96vmin;
+			background-color: $board-body;
+			border: 1vmin $board-border solid;
+			@include display-flex;
+			@include flex-flow(column wrap);
+			@include justify-content(space-between);
+		}
+	}
+}
+
+#board {
+	.qdr {
+		width: 43vmin;
+		height: 47vmin;
+		@include display-flex;
+		@include flex-flow(row nowrap);
+		padding: 0 .5vmin;
+		.cl {
+			width: (100% / 6);
+			height: 100%;
+			@include display-flex;
+			@include align-items(stretch);
+			&::after {
+				content: "";
+				width: 0;
+				height: 0;
+				border-left: 3.5vmin solid transparent;
+				border-right: 3.5vmin solid transparent;
+				border-top: 36vmin solid;
+				background: transparent;
+				@include display-flex;
+				@include align-self(flex-start);
+			}
+			&:nth-child(odd)::after {
+				@include stripesColor($board-light-stripe);
+			}
+			&:nth-child(even)::after {
+				@include stripesColor($board-dark-stripe);
+			}
+		}
+		&-1 {
+			top: 0;
+			left: 0;
+		}
+		&-2 {
+			top: 0;
+			right: 0;
+		}
+		&-3 {
+			bottom: 0;
+			right: 0;
+			@include flex-flow(row-reverse nowrap);
+			.cl::after {
+				@include align-self(flex-end);
+				border-top: 0px;
+				border-bottom: 36vmin solid;		
+			}
+		}
+		&-4 {
+			bottom: 0;
+			left: 0;
+			@include flex-flow(row-reverse nowrap);
+			.cl::after {
+				@include align-self(flex-end);
+				border-top: 0px;
+				border-bottom: 36vmin solid;
+			}
+		}
+	}
+	&-middle {
+		width: 8vmin;
+		height: 96vmin;
+		background-color: $board-border;
+	}
+}
