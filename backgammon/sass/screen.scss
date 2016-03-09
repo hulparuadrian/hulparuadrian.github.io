@@ -37,26 +37,38 @@ html {
 		@include flex-flow(row nowrap);
 		padding: 0 .5vmin;
 		.cl {
+			position: relative;
 			width: (100% / 6);
 			height: 100%;
 			@include display-flex;
-			@include align-items(stretch);
+			@include align-items(flex-start);
+			@include justify-content(flex-start);
+			@include flex-flow(column wrap);
 			&::after {
 				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
 				width: 0;
 				height: 0;
 				border-left: 3.5vmin solid transparent;
 				border-right: 3.5vmin solid transparent;
 				border-top: 36vmin solid;
 				background: transparent;
-				@include display-flex;
-				@include align-self(flex-start);
+				/* @include display-flex;
+				@include align-self(flex-start); */
 			}
 			&:nth-child(odd)::after {
 				@include stripesColor($board-light-stripe);
 			}
 			&:nth-child(even)::after {
 				@include stripesColor($board-dark-stripe);
+			}
+			.white {
+				@include boardItem($whites);
+			}
+			.black {
+				@include boardItem($blacks);
 			}
 		}
 		&-1 {
@@ -71,8 +83,12 @@ html {
 			bottom: 0;
 			right: 0;
 			@include flex-flow(row-reverse nowrap);
+			.cl {
+				@include justify-content(flex-end);
+			}
 			.cl::after {
-				@include align-self(flex-end);
+				top: auto;
+				bottom: 0;
 				border-top: 0px;
 				border-bottom: 36vmin solid;		
 			}
@@ -81,8 +97,12 @@ html {
 			bottom: 0;
 			left: 0;
 			@include flex-flow(row-reverse nowrap);
+			.cl {
+				@include justify-content(flex-end);
+			}
 			.cl::after {
-				@include align-self(flex-end);
+				top: auto;
+				bottom: 0;
 				border-top: 0px;
 				border-bottom: 36vmin solid;
 			}

@@ -11,3 +11,15 @@
 	border-left-color: transparent;
 	border-right-color: transparent;
 }
+
+@mixin boardItem($color) {
+	@include display-flex;
+	content: "";
+	min-width: 7vmin;
+	min-height: 7vmin;
+	border: .5vmin $board-border solid;
+	@include border-radius(3.5vmin);
+	background-color: $color;
+	z-index:999;	
+	margin: .05vmin auto;	
+}
