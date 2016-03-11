@@ -70,6 +70,12 @@ html {
 			.black {
 				@include boardItem($blacks);
 			}
+			&[moveTarget="true"]::after {
+				@include stripesColor($board-target-stripe);
+			}
+			&[onTarget="true"]::after {
+				@include stripesColor($board-target-hover);
+			}
 		}
 		&-1 {
 			top: 0;

@@ -10,6 +10,7 @@ var Board = {
 	blackScore : 0,
 	firstDice : 0,
 	secondDice : 0,
+	doubleCounter : 0,
 	//black - clockwise/false , white - counterclockwise/true
 
 	initialize : function () {
@@ -50,39 +51,40 @@ var Board = {
 		var turn = this.playerTurn ? "item white" : "item black";
 		var items = document.getElementsByClassName("item");
 		for (var i = 0; i < items.length; i++) {
-			items[i].removeAttribute("draggable");
-			items[i].removeAttribute("ondragstart");
+			items[i].removeAttributes(["draggable","ondragstart"]);
 			if ( turn == items[i].getAttribute("class") ) {
-				items[i].setAttribute("draggable", "true");
-				items[i].setAttribute("ondragstart", "event.dataTransfer.setData('text/plain',null)");
+				items[i].setAttributes({"draggable" : "true", "ondragstart" : "event.dataTransfer.setData('text/plain',null)"});
 			}
 		}
 	},
 	throwDices : function () {
 		this.firstDice = this.rollDice();
 		this.secondDice = this.rollDice();
+		if (this.firstDice == this.secondDice) this.doubleCounter = 4;
 	},
 	rollDice : function () {
 		return Math.floor( Math.random() * 6 ) + 1; 
 	},
 	interactBoard : function () {
 		var dragged;
+		var self = this;
+
 		document.addEventListener("drag", function( event ) {}, false);
+		
 		document.addEventListener("dragstart", function( event ) {
 		  	dragged = event.target;
 		  	event.target.style.opacity = .8;
 		  	var currentLine = event.target.parentNode.getAttribute("id").split("-")[1];
-		  //this.availableMoves( currentLine );
-		  	var direction = this.playerTurn ? -1 : 1;
-		  	console.log(this.firstDice+" "+this.secondDice);
-		  	if (this.firstDice == this.secondDice) {
-		  		//double
+  			var direction = self.playerTurn ? -1 : 1;
+  			//target val explanation...... 0 - same position, 1 - first dice, 2 - second dice / double: 3 - 1/4, 4 - 2/4, 5 - 3/4, 6 - 4/4
+		  	if (self.firstDice == self.secondDice) {
+	  		//double
 		  	} else {
-		  		var tmp1 = document.getElementById("cl-"+(currentLine+(this.firstDice*direction)));
-		  		var tmp2 = document.getElementById("cl-"+(currentLine+(this.secondDice*direction)));
-		  		console.log(tmp1);
-		  		console.log(tmp2);
-		  	}
+		  		event.target.parentNode.setAttributes({"moveTarget" : "true", "targetVal" : "0"});
+	  			if (self.firstDice != 0) document.getElementById("cl-"+(parseInt(currentLine) + self.firstDice*direction)).setAttributes({"moveTarget" : "true", "targetVal" : "1"});
+	  			if (self.secondDice != 0) document.getElementById("cl-"+(parseInt(currentLine) + self.secondDice*direction)).setAttributes({"moveTarget" : "true", "targetVal" : "2"});
+	  		}
+
 		}, false);
 
 		document.addEventListener("dragend", function( event ) {
@@ -90,38 +92,51 @@ var Board = {
 		}, false);
 
 		document.addEventListener("dragover", function( event ) { event.preventDefault(); }, false);
+		
 		document.addEventListener("dragenter", function( event ) {
-		  if ( event.target.getAttribute( 'id' ) == "dropzone" ) {
-		      event.target.style.background = "purple";
-		      console.log("sdjlajsdl");
+		  if ( event.target.getAttribute( 'moveTarget' ) == "true" ) {
+		      event.target.setAttribute("onTarget", "true");
 		  }
 
 		}, false);
 
 		document.addEventListener("dragleave", function( event ) {
-		  // reset background of potential drop target when the draggable element leaves it
-		  if ( event.target.getAttribute( 'id' ) == "dropzone" ) {
-		      event.target.style.background = "";
+ 		  if ( event.target.getAttribute( 'moveTarget' ) == "true" ) {
+		      event.target.setAttribute("onTarget", "false");
 		  }
-
 		}, false);
 
 		document.addEventListener("drop", function( event ) {
-		  // prevent default action (open as link for some elements)
-		  event.preventDefault();
-		  // move dragged elem to the selected drop target
-		  if ( event.target.getAttribute( 'id' ) == "dropzone" ) {
-		      event.target.style.background = "";
-		      dragged.parentNode.removeChild( dragged );
-		      event.target.appendChild( dragged );
+		 	event.preventDefault();
+		  	if ( event.target.getAttribute( "moveTarget" ) == "true" ) {
+		    	switch (event.target.getAttribute("targetVal")) {
+		    		case "0" : { break; }
+		    		case "1" : { self.firstDice = 0; break; }
+		    		case "2" : { self.secondDice = 0; break; }
+		    		case "3" : { self.doubleCounter--; break; }
+		    		case "4" : { self.doubleCounter-=2; break; }
+		    		case "5" : { self.doubleCounter-=3; break; }
+		    		case "6" : { self.doubleCounter-=4; break; }
+		    		default : { break; }
+		    	}
+
+				//reset targets
+	      		var targets = document.querySelectorAll('[moveTarget="true"]');
+	    		for (var i = 0; i < targets.length; i++) {
+	    			targets[i].removeAttributes(["moveTarget", "onTarget", "targetVal"]);
+  			    }
+  			    self.boardState[parseInt(dragged.parentNode.getAttribute("id").split("-")[1]-1)][0]--;
+		    	dragged.parentNode.removeChild( dragged );
+
+		    	self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][0]++
+		    	self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][1] = self.playerTurn ? 1 : 0;
+		    	event.target.appendChild( dragged );
+		    	console.log(self);
+
+
 		  }
 
 		}, false);
-	},
-	availableMoves : function ( line ) {
-		console.log( line );
-		var direction = this.playerTurn ? -1 : 1;
-
 	}
 }
 

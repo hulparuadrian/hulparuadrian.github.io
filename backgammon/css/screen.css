@@ -1,4 +1,4 @@
-/* line 5, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -192,55 +192,67 @@ html body #board {
 #board .qdr .cl .black:hover {
   cursor: pointer;
 }
-/* line 74, ../sass/screen.scss */
+/* line 73, ../sass/screen.scss */
+#board .qdr .cl[moveTarget="true"]::after {
+  border-color: #FF9800;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/* line 76, ../sass/screen.scss */
+#board .qdr .cl[onTarget="true"]::after {
+  border-color: #cc8e33;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/* line 80, ../sass/screen.scss */
 #board .qdr-1 {
   top: 0;
   left: 0;
 }
-/* line 78, ../sass/screen.scss */
+/* line 84, ../sass/screen.scss */
 #board .qdr-2 {
   top: 0;
   right: 0;
 }
-/* line 82, ../sass/screen.scss */
+/* line 88, ../sass/screen.scss */
 #board .qdr-3 {
   bottom: 0;
   right: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 86, ../sass/screen.scss */
+/* line 92, ../sass/screen.scss */
 #board .qdr-3 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 89, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 #board .qdr-3 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 96, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 #board .qdr-4 {
   bottom: 0;
   left: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 100, ../sass/screen.scss */
+/* line 106, ../sass/screen.scss */
 #board .qdr-4 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 103, ../sass/screen.scss */
+/* line 109, ../sass/screen.scss */
 #board .qdr-4 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 111, ../sass/screen.scss */
+/* line 117, ../sass/screen.scss */
 #board-middle {
   width: 8vmin;
   height: 96vmin;
