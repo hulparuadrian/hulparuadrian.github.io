@@ -169,6 +169,10 @@ html body #board {
   z-index: 999;
   margin: .05vmin auto;
 }
+/* line 25, ../sass/_mixins.scss */
+#board .qdr .cl .white:hover {
+  cursor: pointer;
+}
 /* line 70, ../sass/screen.scss */
 #board .qdr .cl .black {
   display: -webkit-flex;
@@ -183,6 +187,10 @@ html body #board {
   background-color: #547980;
   z-index: 999;
   margin: .05vmin auto;
+}
+/* line 25, ../sass/_mixins.scss */
+#board .qdr .cl .black:hover {
+  cursor: pointer;
 }
 /* line 74, ../sass/screen.scss */
 #board .qdr-1 {

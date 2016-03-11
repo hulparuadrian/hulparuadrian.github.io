@@ -21,5 +21,8 @@
 	@include border-radius(3.5vmin);
 	background-color: $color;
 	z-index:999;	
-	margin: .05vmin auto;	
+	margin: .05vmin auto;
+	&:hover {
+		cursor: pointer;
+	}	
 }
