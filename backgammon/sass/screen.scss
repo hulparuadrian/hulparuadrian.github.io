@@ -12,12 +12,14 @@
 html {
 	@include fullScreen(); 
 	body {
+		position: relative;
 		background-color: $background;
 		min-height: 100vh;
 		@include display-flex;
   		@include align-items(center);
 		@include justify-content(center);
 		#board {
+			position: relative;
 			width: 96vmin;
 			height: 96vmin;
 			background-color: $board-body;
@@ -25,6 +27,11 @@ html {
 			@include display-flex;
 			@include flex-flow(column wrap);
 			@include justify-content(space-between);
+		}
+		#debug {
+			position: absolute;
+			top: 1vmin;
+			left: 1vmin;
 		}
 	}
 }
@@ -114,9 +121,85 @@ html {
 			}
 		}
 	}
-	&-middle {
+	&-bar {
+		@include display-flex;
+		@include flex-flow(column wrap);
+		@include align-content(center);
+		@include justify-content(space-around);
 		width: 8vmin;
 		height: 96vmin;
 		background-color: $board-border;
+		.white {
+			@include boardItem($whites);
+		}
+		.black {
+			@include boardItem($blacks);
+		}
+		.item {
+			border-color: #FFCA28;
+		}
 	}
+	#dices {
+		position: absolute;
+		height: 6vmin;
+		width: 13vmin;
+		top: 44vmin;
+		left: 15vmin;
+		.dice {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 6vmin;
+			height: 6vmin;
+			background-color: $board-border;
+			padding: .9vmin;
+			@include border-radius(1vmin);
+			@include display-flex;
+			@include flex-flow(row wrap);
+			@include justify-content(space-between);
+			@include align-content(space-between);
+			&:nth-child(2) {
+				left: auto;
+				right: 0;
+			}
+			.dot {
+				@include display-flex;
+				width: 1.2vmin;
+				height: 1.2vmin;
+				@include border-radius(1vmin);
+				background-color: $board-border;
+			}
+			&-1 .dot {
+				&:nth-child(5) {
+					background-color: $board-body;
+				}
+			}
+			&-2 .dot {
+				&:nth-child(1), &:nth-child(9) {
+					background-color: $board-body;
+				}
+			}
+			&-3 .dot {
+				&:nth-child(1), &:nth-child(5), &:nth-child(9) {
+					background-color: $board-body;
+				}
+			}
+			&-4 .dot {
+				&:nth-child(1), &:nth-child(3), &:nth-child(7), &:nth-child(9) {
+					background-color: $board-body;
+				}
+			}
+			&-5 .dot {
+				&:nth-child(1), &:nth-child(3), &:nth-child(5), &:nth-child(7), &:nth-child(9) {
+					background-color: $board-body;
+				}
+			}
+			&-6 .dot {
+				&:nth-child(1), &:nth-child(3), &:nth-child(4), &:nth-child(6), &:nth-child(7), &:nth-child(9) {
+					background-color: $board-body;
+				}
+			}
+				
+		}
+	}	
 }

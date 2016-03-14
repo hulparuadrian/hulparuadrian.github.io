@@ -22,7 +22,7 @@
 	background-color: $color;
 	z-index:999;	
 	margin: .05vmin auto;
-	&:hover {
+	&[draggable="true"]:hover {
 		cursor: pointer;
 	}	
 }

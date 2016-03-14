@@ -1,4 +1,4 @@
-/* line 5, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 5, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 22, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 22, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html {
   line-height: 1;
 }
 
-/* line 24, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 24, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 26, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 26, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 28, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 28, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 30, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 30, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 103, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 103, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 32, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 32, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 116, ../../../../../../../../../Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+/* line 116, C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
@@ -80,6 +80,7 @@ html {
 }
 /* line 14, ../sass/screen.scss */
 html body {
+  position: relative;
   background-color: #547980;
   min-height: 100vh;
   display: -webkit-flex;
@@ -89,8 +90,9 @@ html body {
   -webkit-justify-content: center;
   justify-content: center;
 }
-/* line 20, ../sass/screen.scss */
+/* line 21, ../sass/screen.scss */
 html body #board {
+  position: relative;
   width: 96vmin;
   height: 96vmin;
   background-color: #E5FCC2;
@@ -102,8 +104,14 @@ html body #board {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+/* line 31, ../sass/screen.scss */
+html body #debug {
+  position: absolute;
+  top: 1vmin;
+  left: 1vmin;
+}
 
-/* line 33, ../sass/screen.scss */
+/* line 40, ../sass/screen.scss */
 #board .qdr {
   width: 43vmin;
   height: 47vmin;
@@ -113,7 +121,7 @@ html body #board {
   flex-flow: row nowrap;
   padding: 0 .5vmin;
 }
-/* line 39, ../sass/screen.scss */
+/* line 46, ../sass/screen.scss */
 #board .qdr .cl {
   position: relative;
   width: 16.66667%;
@@ -127,7 +135,7 @@ html body #board {
   -webkit-flex-flow: column wrap;
   flex-flow: column wrap;
 }
-/* line 47, ../sass/screen.scss */
+/* line 54, ../sass/screen.scss */
 #board .qdr .cl::after {
   content: "";
   position: absolute;
@@ -142,19 +150,19 @@ html body #board {
   /* @include display-flex;
   @include align-self(flex-start); */
 }
-/* line 61, ../sass/screen.scss */
+/* line 68, ../sass/screen.scss */
 #board .qdr .cl:nth-child(odd)::after {
   border-color: #9DE0AD;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 64, ../sass/screen.scss */
+/* line 71, ../sass/screen.scss */
 #board .qdr .cl:nth-child(even)::after {
   border-color: #45ADA8;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 67, ../sass/screen.scss */
+/* line 74, ../sass/screen.scss */
 #board .qdr .cl .white {
   display: -webkit-flex;
   display: flex;
@@ -170,10 +178,10 @@ html body #board {
   margin: .05vmin auto;
 }
 /* line 25, ../sass/_mixins.scss */
-#board .qdr .cl .white:hover {
+#board .qdr .cl .white[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 70, ../sass/screen.scss */
+/* line 77, ../sass/screen.scss */
 #board .qdr .cl .black {
   display: -webkit-flex;
   display: flex;
@@ -189,72 +197,191 @@ html body #board {
   margin: .05vmin auto;
 }
 /* line 25, ../sass/_mixins.scss */
-#board .qdr .cl .black:hover {
+#board .qdr .cl .black[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 73, ../sass/screen.scss */
-#board .qdr .cl[moveTarget="true"]::after {
-  border-color: #FF9800;
-  border-left-color: transparent;
-  border-right-color: transparent;
-}
-/* line 76, ../sass/screen.scss */
-#board .qdr .cl[onTarget="true"]::after {
-  border-color: #cc8e33;
-  border-left-color: transparent;
-  border-right-color: transparent;
-}
 /* line 80, ../sass/screen.scss */
+#board .qdr .cl[moveTarget="true"]::after {
+  border-color: #29FF56;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/* line 83, ../sass/screen.scss */
+#board .qdr .cl[onTarget="true"]::after {
+  border-color: #54d46f;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+/* line 87, ../sass/screen.scss */
 #board .qdr-1 {
   top: 0;
   left: 0;
 }
-/* line 84, ../sass/screen.scss */
+/* line 91, ../sass/screen.scss */
 #board .qdr-2 {
   top: 0;
   right: 0;
 }
-/* line 88, ../sass/screen.scss */
+/* line 95, ../sass/screen.scss */
 #board .qdr-3 {
   bottom: 0;
   right: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 92, ../sass/screen.scss */
+/* line 99, ../sass/screen.scss */
 #board .qdr-3 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 95, ../sass/screen.scss */
+/* line 102, ../sass/screen.scss */
 #board .qdr-3 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 102, ../sass/screen.scss */
+/* line 109, ../sass/screen.scss */
 #board .qdr-4 {
   bottom: 0;
   left: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 106, ../sass/screen.scss */
+/* line 113, ../sass/screen.scss */
 #board .qdr-4 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 109, ../sass/screen.scss */
+/* line 116, ../sass/screen.scss */
 #board .qdr-4 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 117, ../sass/screen.scss */
-#board-middle {
+/* line 124, ../sass/screen.scss */
+#board-bar {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+  flex-flow: column wrap;
+  -webkit-align-content: center;
+  align-content: center;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
   width: 8vmin;
   height: 96vmin;
   background-color: #395356;
+}
+/* line 132, ../sass/screen.scss */
+#board-bar .white {
+  display: -webkit-flex;
+  display: flex;
+  content: "";
+  min-width: 7vmin;
+  min-height: 7vmin;
+  border: 0.5vmin #395356 solid;
+  -moz-border-radius: 3.5vmin;
+  -webkit-border-radius: 3.5vmin;
+  border-radius: 3.5vmin;
+  background-color: #ECFFFB;
+  z-index: 999;
+  margin: .05vmin auto;
+}
+/* line 25, ../sass/_mixins.scss */
+#board-bar .white[draggable="true"]:hover {
+  cursor: pointer;
+}
+/* line 135, ../sass/screen.scss */
+#board-bar .black {
+  display: -webkit-flex;
+  display: flex;
+  content: "";
+  min-width: 7vmin;
+  min-height: 7vmin;
+  border: 0.5vmin #395356 solid;
+  -moz-border-radius: 3.5vmin;
+  -webkit-border-radius: 3.5vmin;
+  border-radius: 3.5vmin;
+  background-color: #547980;
+  z-index: 999;
+  margin: .05vmin auto;
+}
+/* line 25, ../sass/_mixins.scss */
+#board-bar .black[draggable="true"]:hover {
+  cursor: pointer;
+}
+/* line 138, ../sass/screen.scss */
+#board-bar .item {
+  border-color: #FFCA28;
+}
+/* line 142, ../sass/screen.scss */
+#board #dices {
+  position: absolute;
+  height: 6vmin;
+  width: 13vmin;
+  top: 44vmin;
+  left: 15vmin;
+}
+/* line 148, ../sass/screen.scss */
+#board #dices .dice {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6vmin;
+  height: 6vmin;
+  background-color: #395356;
+  padding: .9vmin;
+  -moz-border-radius: 1vmin;
+  -webkit-border-radius: 1vmin;
+  border-radius: 1vmin;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-content: space-between;
+  align-content: space-between;
+}
+/* line 161, ../sass/screen.scss */
+#board #dices .dice:nth-child(2) {
+  left: auto;
+  right: 0;
+}
+/* line 165, ../sass/screen.scss */
+#board #dices .dice .dot {
+  display: -webkit-flex;
+  display: flex;
+  width: 1.2vmin;
+  height: 1.2vmin;
+  -moz-border-radius: 1vmin;
+  -webkit-border-radius: 1vmin;
+  border-radius: 1vmin;
+  background-color: #395356;
+}
+/* line 173, ../sass/screen.scss */
+#board #dices .dice-1 .dot:nth-child(5) {
+  background-color: #E5FCC2;
+}
+/* line 178, ../sass/screen.scss */
+#board #dices .dice-2 .dot:nth-child(1), #board #dices .dice-2 .dot:nth-child(9) {
+  background-color: #E5FCC2;
+}
+/* line 183, ../sass/screen.scss */
+#board #dices .dice-3 .dot:nth-child(1), #board #dices .dice-3 .dot:nth-child(5), #board #dices .dice-3 .dot:nth-child(9) {
+  background-color: #E5FCC2;
+}
+/* line 188, ../sass/screen.scss */
+#board #dices .dice-4 .dot:nth-child(1), #board #dices .dice-4 .dot:nth-child(3), #board #dices .dice-4 .dot:nth-child(7), #board #dices .dice-4 .dot:nth-child(9) {
+  background-color: #E5FCC2;
+}
+/* line 193, ../sass/screen.scss */
+#board #dices .dice-5 .dot:nth-child(1), #board #dices .dice-5 .dot:nth-child(3), #board #dices .dice-5 .dot:nth-child(5), #board #dices .dice-5 .dot:nth-child(7), #board #dices .dice-5 .dot:nth-child(9) {
+  background-color: #E5FCC2;
+}
+/* line 198, ../sass/screen.scss */
+#board #dices .dice-6 .dot:nth-child(1), #board #dices .dice-6 .dot:nth-child(3), #board #dices .dice-6 .dot:nth-child(4), #board #dices .dice-6 .dot:nth-child(6), #board #dices .dice-6 .dot:nth-child(7), #board #dices .dice-6 .dot:nth-child(9) {
+  background-color: #E5FCC2;
 }
