@@ -18,7 +18,7 @@ var Board = {
 
 	initialize : function () {
 		this.populateBoard();
-		this.assignTurn();
+		this.assignTurn("normal");
 		this.interactBoard();
 		//game loop
 	},
@@ -53,9 +53,12 @@ var Board = {
 		document.getElementById("dice-2").innerHTML = diceDots;
 
 	},
-	assignTurn : function () {
-		this.throwDices();
-		this.playerTurn = !this.playerTurn;
+	assignTurn : function (type) {
+		if (type != "reassign") {
+			this.throwDices();
+			this.playerTurn = !this.playerTurn;
+			console.log(" not reassign");
+		} else console.log("reassign");
 		document.getElementById("debug").innerHTML = this.playerTurn ? "white turn" : "black turn"; 
 		var turn = this.playerTurn ? "item white" : "item black";
 		var items = document.getElementsByClassName("item");
@@ -94,6 +97,10 @@ var Board = {
 		  	dragged = event.target;
 		  	event.target.style.opacity = .8;
 		  	var currentLine = event.target.parentNode.getAttribute("id").split("-")[1];
+		  	
+		  	if (self.whiteOut && self.playerTurn) currentLine = 25;
+		  	if (self.blackOut && !self.playerTurn) currentLine = 0;
+
 		  	currentLine = parseInt(currentLine);
   			var direction = self.playerTurn ? -1 : 1;
   			//target val explanation...... 0 - same position, 1 - first dice, 2 - second dice, 3 - both dices sum / double: 4 - 1/4, 5 - 2/4, 6 - 3/4, 7 - 4/4
@@ -116,7 +123,7 @@ var Board = {
 		  		}
 		  	} else {
 		  		//same position
-		  		event.target.parentNode.setAttributes({"moveTarget" : "true", "targetVal" : "0"});
+		  		if (event.target.parentNode.getAttribute("id") != "board-bar") event.target.parentNode.setAttributes({"moveTarget" : "true", "targetVal" : "0"});
 		  		
 		  		//first dice
 	  			if (self.firstDice != 0 && (
@@ -137,19 +144,20 @@ var Board = {
 	  				document.getElementById("cl-"+(currentLine + self.secondDice*direction)).setAttributes({"moveTarget" : "true", "targetVal" : "2"}); 
 	  			}
 
-	  			//combination of dices, only if there is direct path (no 1 enemy item row)
-	  			if ((self.firstDice != 0 && self.secondDice != 0 && (
-	  					self.boardState[currentLine+self.firstDice*direction-1][0] == 0 || 
-	  					self.boardState[currentLine+self.firstDice*direction-1][1] == self.playerTurn ||
-	  					self.boardState[currentLine+self.secondDice*direction-1][0] == 0 || 
-	  					self.boardState[currentLine+self.secondDice*direction-1][1] == self.playerTurn
-  				))) {
-					if (self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][0] <= 1 || (
-						self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][0] > 1 && 
-						self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][1] == self.playerTurn)) {
-		  				document.getElementById("cl-"+(currentLine + (self.firstDice+self.secondDice)*direction)).setAttributes({"moveTarget" : "true", "targetVal" : "3"});
-		  			}
-				}
+	  			//combination of dices, only if there is direct path (no blot hitting) or no entering
+	  			if (!((self.whiteOut && self.playerTurn) || (self.blackOut && !self.playerTurn)))
+	  			{if ((self.firstDice != 0 && self.secondDice != 0 && (
+	  				  					self.boardState[currentLine+self.firstDice*direction-1][0] == 0 || 
+	  				  					self.boardState[currentLine+self.firstDice*direction-1][1] == self.playerTurn ||
+	  				  					self.boardState[currentLine+self.secondDice*direction-1][0] == 0 || 
+	  				  					self.boardState[currentLine+self.secondDice*direction-1][1] == self.playerTurn
+	  			  				))) {
+	  								if (self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][0] <= 1 || (
+	  									self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][0] > 1 && 
+	  									self.boardState[currentLine+(self.firstDice+self.secondDice)*direction-1][1] == self.playerTurn)) {
+	  					  				document.getElementById("cl-"+(currentLine + (self.firstDice+self.secondDice)*direction)).setAttributes({"moveTarget" : "true", "targetVal" : "3"});
+	  					  			}
+	  							}}
 	  		}
 		}, false);
 
@@ -187,9 +195,20 @@ var Board = {
 		    		default : { break; }
 		    	}
 
-  			    self.boardState[parseInt(dragged.parentNode.getAttribute("id").split("-")[1]-1)][0]--;
+		    	//handling entering
+		    	var enteringFlag = false; // flag for reseting draggable attr is dice left after entering 
+		    	if (self.whiteOut && self.playerTurn) {
+		    		self.whiteOut--;
+		    		if (!self.whiteOut) enteringFlag = true;
+		    	} 
+	    		else if (self.blackOut && !self.playerTurn) {
+	    			self.blackOut--;
+    				if (!self.blackOut) enteringFlag = true;
+	    		}
+	    		else self.boardState[parseInt(dragged.parentNode.getAttribute("id").split("-")[1]-1)][0]--;
 		    	dragged.parentNode.removeChild( dragged );
 
+		    	//handling blot hitting
 		    	if(self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][0] == 1 && self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][1] == !self.playerTurn) {
 		    		var tmp = event.target.childNodes[0];
 		    		event.target.removeChild(tmp);
@@ -197,6 +216,7 @@ var Board = {
 		    		self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][0] = 0;
 		    		self.playerTurn ? self.blackOut++ : self.whiteOut++;
 		    	}
+
 
 		    	self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][0]++
 		    	self.boardState[parseInt(parseInt(event.target.getAttribute("id").split("-")[1])-1)][1] = self.playerTurn ? 1 : 0;
@@ -208,7 +228,10 @@ var Board = {
     		for (var i = 0; i < targets.length; i++) {
     			targets[i].removeAttributes(["moveTarget", "onTarget", "targetVal"]);
 		    }
-		  	if ((self.firstDice == 0 && self.secondDice == 0) || (self.isDouble && !self.doubleCounter)) self.assignTurn(); 
+		  	if ((self.firstDice == 0 && self.secondDice == 0) || (self.isDouble && !self.doubleCounter)) self.assignTurn("normal");
+		  	else if (enteringFlag) {
+		  		self.assignTurn("reassign");
+		  	}
 
 		}, false);
 	}
