@@ -1,3 +1,17 @@
+//debug purpose code;
+/*
+	boardState : [ 
+		[2, 0], [0, 0], [0, 0], [0, 0], [0, 0], [5, 1],
+		[0, 0], [3, 1], [0, 0], [0, 0], [0, 0], [5, 0],
+		[5, 1], [0, 0], [0, 0], [0, 0], [3, 0], [0, 0],
+		[5, 0], [0, 0], [0, 0], [0, 0], [0, 0], [2, 1]
+		],
+
+
+		[2, 1], [5, 1], [3, 1], [0, 1], [3, 1], [2, 1],
+
+*/
+
 var Board = {
 	boardState : [ 
 		[2, 0], [0, 0], [0, 0], [0, 0], [0, 0], [5, 1],
@@ -6,8 +20,8 @@ var Board = {
 		[5, 0], [0, 0], [0, 0], [0, 0], [0, 0], [2, 1]
 		],
 	playerTurn : true,
-	whiteScore : 0,
-	blackScore : 0,
+	whiteScore : 15,
+	blackScore : 15,
 	firstDice : 0,
 	secondDice : 0,
 	isDouble : false,
@@ -18,7 +32,7 @@ var Board = {
 
 	initialize : function () {
 		this.populateBoard();
-		this.assignTurn("normal");
+		this.throwDices();
 		this.interactBoard();
 		//game loop
 	},
@@ -53,12 +67,7 @@ var Board = {
 		document.getElementById("dice-2").innerHTML = diceDots;
 
 	},
-	assignTurn : function (type) {
-		if (type != "reassign") {
-			this.throwDices();
-			this.playerTurn = !this.playerTurn;
-			console.log(" not reassign");
-		} else console.log("reassign");
+	assignTurn : function () {
 		document.getElementById("debug").innerHTML = this.playerTurn ? "white turn" : "black turn"; 
 		var turn = this.playerTurn ? "item white" : "item black";
 		var items = document.getElementsByClassName("item");
@@ -83,9 +92,20 @@ var Board = {
 			this.isDouble = true;
 			this.doubleCounter = 4;
 		}
+
+		this.playerTurn = !this.playerTurn;
+		this.assignTurn();
 	},
 	rollDice : function () {
 		return Math.floor( Math.random() * 6 ) + 1; 
+	},
+	checkBearing : function () {
+		var tmpSum = 0;
+		var st = this.playerTurn ? 0 : 18;
+		for ( var i = st; i < st + 6; i++) {
+			if ( this.boardState[i][1] == this.playerTurn ) tmpSum += this.boardState[i][0];
+		}
+		return tmpSum == (this.playerTurn ? this.whiteScore : this.blackScore) ? true : false;
 	},
 	interactBoard : function () {
 		var dragged;
@@ -228,9 +248,9 @@ var Board = {
     		for (var i = 0; i < targets.length; i++) {
     			targets[i].removeAttributes(["moveTarget", "onTarget", "targetVal"]);
 		    }
-		  	if ((self.firstDice == 0 && self.secondDice == 0) || (self.isDouble && !self.doubleCounter)) self.assignTurn("normal");
+		  	if ((self.firstDice == 0 && self.secondDice == 0) || (self.isDouble && !self.doubleCounter)) self.throwDices();
 		  	else if (enteringFlag) {
-		  		self.assignTurn("reassign");
+		  		self.assignTurn();
 		  	}
 
 		}, false);
@@ -240,6 +260,9 @@ var Board = {
 //start game
 
 var game = Object.create(Board);
-ready(function () {game.initialize();} );
-//game.initialize();
-
+ready(function () {
+	game.initialize();
+	document.getElementById("debug").addEventListener("click", function(){
+		game.throwDices();
+	});
+});
