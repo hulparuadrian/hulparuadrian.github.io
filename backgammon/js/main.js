@@ -94,6 +94,21 @@ var Board = {
 		}
 
 		this.playerTurn = !this.playerTurn;
+		/*switch (this.playerTurn) {
+			case true : {
+				document.getElementById("black").setAttribute("class", "player");
+				document.getElementById("white").setAttribute("class", "player current");
+				break;		
+			}
+			case false : {
+				document.getElementById("white").setAttribute("class", "player");
+				document.getElementById("black").setAttribute("class", "player current");
+				break;		
+			}  
+			case default : break;
+		}*/
+		document.getElementById( this.playerTurn ? "black" : "white" ).setAttribute("class", "player");
+		document.getElementById( this.playerTurn ? "white" : "black" ).setAttribute("class", "player current");		
 		this.assignTurn();
 	},
 	rollDice : function () {

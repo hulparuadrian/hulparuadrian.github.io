@@ -105,13 +105,57 @@ html body #board {
   justify-content: space-between;
 }
 /* line 31, ../sass/screen.scss */
+html body #players {
+  position: relative;
+  width: 14vmin;
+  height: 96vmin;
+  background-color: #E5FCC2;
+  border: 1vmin #395356 solid;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+  flex-flow: column wrap;
+}
+/* line 39, ../sass/screen.scss */
+html body #players .player {
+  width: 100%;
+  height: 50%;
+}
+/* line 42, ../sass/screen.scss */
+html body #players .player .name {
+  width: 100%;
+  height: 10%;
+  background-color: #ECFFFB;
+  color: #547980;
+}
+/* line 48, ../sass/screen.scss */
+html body #players .player .drop-area {
+  width: 100%;
+  height: 90%;
+  background-color: #d4e6e2;
+}
+/* line 55, ../sass/screen.scss */
+html body #players #black .name {
+  background-color: #547980;
+  color: #ECFFFB;
+}
+/* line 59, ../sass/screen.scss */
+html body #players #black .drop-area {
+  background-color: #65868d;
+}
+/* line 63, ../sass/screen.scss */
+html body #players .current .name {
+  background-color: #E04848 !important;
+  color: #E5FCC2 !important;
+}
+/* line 69, ../sass/screen.scss */
 html body #debug {
   position: absolute;
   top: 1vmin;
   left: 1vmin;
 }
 
-/* line 40, ../sass/screen.scss */
+/* line 79, ../sass/screen.scss */
 #board .qdr {
   width: 43vmin;
   height: 47vmin;
@@ -121,7 +165,7 @@ html body #debug {
   flex-flow: row nowrap;
   padding: 0 .5vmin;
 }
-/* line 46, ../sass/screen.scss */
+/* line 85, ../sass/screen.scss */
 #board .qdr .cl {
   position: relative;
   width: 16.66667%;
@@ -135,7 +179,7 @@ html body #debug {
   -webkit-flex-flow: column wrap;
   flex-flow: column wrap;
 }
-/* line 54, ../sass/screen.scss */
+/* line 93, ../sass/screen.scss */
 #board .qdr .cl::after {
   content: "";
   position: absolute;
@@ -150,19 +194,19 @@ html body #debug {
   /* @include display-flex;
   @include align-self(flex-start); */
 }
-/* line 68, ../sass/screen.scss */
+/* line 107, ../sass/screen.scss */
 #board .qdr .cl:nth-child(odd)::after {
   border-color: #9DE0AD;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 71, ../sass/screen.scss */
+/* line 110, ../sass/screen.scss */
 #board .qdr .cl:nth-child(even)::after {
   border-color: #45ADA8;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 74, ../sass/screen.scss */
+/* line 113, ../sass/screen.scss */
 #board .qdr .cl .white {
   display: -webkit-flex;
   display: flex;
@@ -181,7 +225,7 @@ html body #debug {
 #board .qdr .cl .white[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 77, ../sass/screen.scss */
+/* line 116, ../sass/screen.scss */
 #board .qdr .cl .black {
   display: -webkit-flex;
   display: flex;
@@ -200,67 +244,67 @@ html body #debug {
 #board .qdr .cl .black[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 80, ../sass/screen.scss */
+/* line 119, ../sass/screen.scss */
 #board .qdr .cl[moveTarget="true"]::after {
   border-color: #29FF56;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 83, ../sass/screen.scss */
+/* line 122, ../sass/screen.scss */
 #board .qdr .cl[onTarget="true"]::after {
   border-color: #54d46f;
   border-left-color: transparent;
   border-right-color: transparent;
 }
-/* line 87, ../sass/screen.scss */
+/* line 126, ../sass/screen.scss */
 #board .qdr-1 {
   top: 0;
   left: 0;
 }
-/* line 91, ../sass/screen.scss */
+/* line 130, ../sass/screen.scss */
 #board .qdr-2 {
   top: 0;
   right: 0;
 }
-/* line 95, ../sass/screen.scss */
+/* line 134, ../sass/screen.scss */
 #board .qdr-3 {
   bottom: 0;
   right: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 99, ../sass/screen.scss */
+/* line 138, ../sass/screen.scss */
 #board .qdr-3 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 102, ../sass/screen.scss */
+/* line 141, ../sass/screen.scss */
 #board .qdr-3 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 109, ../sass/screen.scss */
+/* line 148, ../sass/screen.scss */
 #board .qdr-4 {
   bottom: 0;
   left: 0;
   -webkit-flex-flow: row-reverse nowrap;
   flex-flow: row-reverse nowrap;
 }
-/* line 113, ../sass/screen.scss */
+/* line 152, ../sass/screen.scss */
 #board .qdr-4 .cl {
   -webkit-justify-content: flex-end;
   justify-content: flex-end;
 }
-/* line 116, ../sass/screen.scss */
+/* line 155, ../sass/screen.scss */
 #board .qdr-4 .cl::after {
   top: auto;
   bottom: 0;
   border-top: 0px;
   border-bottom: 36vmin solid;
 }
-/* line 124, ../sass/screen.scss */
+/* line 163, ../sass/screen.scss */
 #board-bar {
   display: -webkit-flex;
   display: flex;
@@ -274,7 +318,7 @@ html body #debug {
   height: 96vmin;
   background-color: #395356;
 }
-/* line 132, ../sass/screen.scss */
+/* line 171, ../sass/screen.scss */
 #board-bar .white {
   display: -webkit-flex;
   display: flex;
@@ -293,7 +337,7 @@ html body #debug {
 #board-bar .white[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 135, ../sass/screen.scss */
+/* line 174, ../sass/screen.scss */
 #board-bar .black {
   display: -webkit-flex;
   display: flex;
@@ -312,11 +356,11 @@ html body #debug {
 #board-bar .black[draggable="true"]:hover {
   cursor: pointer;
 }
-/* line 138, ../sass/screen.scss */
+/* line 177, ../sass/screen.scss */
 #board-bar .item {
   border-color: #FFCA28;
 }
-/* line 142, ../sass/screen.scss */
+/* line 181, ../sass/screen.scss */
 #board #dices {
   position: absolute;
   height: 6vmin;
@@ -324,7 +368,7 @@ html body #debug {
   top: 44vmin;
   left: 15vmin;
 }
-/* line 148, ../sass/screen.scss */
+/* line 187, ../sass/screen.scss */
 #board #dices .dice {
   position: absolute;
   top: 0;
@@ -345,12 +389,12 @@ html body #debug {
   -webkit-align-content: space-between;
   align-content: space-between;
 }
-/* line 161, ../sass/screen.scss */
+/* line 200, ../sass/screen.scss */
 #board #dices .dice:nth-child(2) {
   left: auto;
   right: 0;
 }
-/* line 165, ../sass/screen.scss */
+/* line 204, ../sass/screen.scss */
 #board #dices .dice .dot {
   display: -webkit-flex;
   display: flex;
@@ -361,27 +405,27 @@ html body #debug {
   border-radius: 1vmin;
   background-color: #395356;
 }
-/* line 173, ../sass/screen.scss */
+/* line 212, ../sass/screen.scss */
 #board #dices .dice-1 .dot:nth-child(5) {
   background-color: #E5FCC2;
 }
-/* line 178, ../sass/screen.scss */
+/* line 217, ../sass/screen.scss */
 #board #dices .dice-2 .dot:nth-child(1), #board #dices .dice-2 .dot:nth-child(9) {
   background-color: #E5FCC2;
 }
-/* line 183, ../sass/screen.scss */
+/* line 222, ../sass/screen.scss */
 #board #dices .dice-3 .dot:nth-child(1), #board #dices .dice-3 .dot:nth-child(5), #board #dices .dice-3 .dot:nth-child(9) {
   background-color: #E5FCC2;
 }
-/* line 188, ../sass/screen.scss */
+/* line 227, ../sass/screen.scss */
 #board #dices .dice-4 .dot:nth-child(1), #board #dices .dice-4 .dot:nth-child(3), #board #dices .dice-4 .dot:nth-child(7), #board #dices .dice-4 .dot:nth-child(9) {
   background-color: #E5FCC2;
 }
-/* line 193, ../sass/screen.scss */
+/* line 232, ../sass/screen.scss */
 #board #dices .dice-5 .dot:nth-child(1), #board #dices .dice-5 .dot:nth-child(3), #board #dices .dice-5 .dot:nth-child(5), #board #dices .dice-5 .dot:nth-child(7), #board #dices .dice-5 .dot:nth-child(9) {
   background-color: #E5FCC2;
 }
-/* line 198, ../sass/screen.scss */
+/* line 237, ../sass/screen.scss */
 #board #dices .dice-6 .dot:nth-child(1), #board #dices .dice-6 .dot:nth-child(3), #board #dices .dice-6 .dot:nth-child(4), #board #dices .dice-6 .dot:nth-child(6), #board #dices .dice-6 .dot:nth-child(7), #board #dices .dice-6 .dot:nth-child(9) {
   background-color: #E5FCC2;
 }
